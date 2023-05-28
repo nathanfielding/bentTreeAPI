@@ -22,7 +22,7 @@ public class Tenant {
     private String home_address;
 
     @ManyToOne
-    @JoinColumn(name = "apartment_id", nullable = false)
+    @JoinColumn(name = "apartment_id", referencedColumnName = "id")
     private Apartment apartment;
 
     @OneToOne(mappedBy = "tenant")
@@ -46,7 +46,7 @@ public class Tenant {
         return this.id;
     }
 
-    public String getname() {
+    public String getName() {
         return this.name;
     }
 

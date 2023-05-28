@@ -21,11 +21,11 @@ public class Lease {
     private Date end_date;
 
     @OneToOne
-    @JoinColumn(name = "tenant_id", nullable = false)
+    @JoinColumn(name = "tenant_id", referencedColumnName = "id")
     private Tenant tenant;
 
     @ManyToOne
-    @JoinColumn(name = "apartment_id", nullable = false)
+    @JoinColumn(name = "apartment_id", referencedColumnName = "id", nullable = false)
     private Apartment apartment;
     private Integer monthly_rent;
     private Integer deposit;

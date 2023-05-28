@@ -1,18 +1,13 @@
 package dev.nwf.bentTreeAPI.controller;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.server.ResponseStatusException;
 
-import dev.nwf.bentTreeAPI.repository.ApartmentRepository;
-import dev.nwf.bentTreeAPI.repository.TenantRepository;
 import dev.nwf.bentTreeAPI.service.TenantService;
-import dev.nwf.bentTreeAPI.model.Apartment;
 import dev.nwf.bentTreeAPI.model.Tenant;
 
 import java.util.List;
