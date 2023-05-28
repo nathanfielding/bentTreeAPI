@@ -74,8 +74,8 @@ public class Tenant {
         this.id = id;
     }
 
-    public void setname(String name) {
-        this.name = name.toUpperCase();
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setEmail(String email) {

@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS tenants (
     phone_number VARCHAR(12) NOT NULL,
     is_renewing BOOLEAN NOT NULL,
     home_address VARCHAR(40) NOT NULL,
-    apartment_id INTEGER NOT NULL,
+    apartment_id INTEGER,
     PRIMARY KEY (id),
     FOREIGN KEY (apartment_id) REFERENCES apartments(id)
 );
@@ -23,8 +23,8 @@ CREATE TABLE IF NOT EXISTS leases (
     id SERIAL,
     start_date DATE NOT NULL,
     end_date DATE NOT NULL,
-    tenant_id INTEGER NOT NULL,
-    apartment_id INTEGER NOT NULL,
+    tenant_id INTEGER,
+    apartment_id INTEGER,
     monthly_rent INTEGER NOT NULL,
     deposit INTEGER NOT NULL,
     PRIMARY KEY (id),

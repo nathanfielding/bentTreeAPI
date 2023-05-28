@@ -38,8 +38,9 @@ public class ApartmentController {
         this.apartmentService.save(apartment);
     }
 
-    @PutMapping("/number/{number}")
-    public void addTenant(@PathVariable String number, @RequestBody Tenant tenant) {
-        this.apartmentService.addTenant(number, tenant);
+    // currently not working
+    @PutMapping("/number/{number}/name/{name}")
+    public void addTenant(@PathVariable String number, @PathVariable String name) {
+        this.apartmentService.addTenant(number, name);
     }
 }

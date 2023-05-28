@@ -25,7 +25,7 @@ public class Lease {
     private Tenant tenant;
 
     @ManyToOne
-    @JoinColumn(name = "apartment_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "apartment_id", referencedColumnName = "id")
     private Apartment apartment;
     private Integer monthly_rent;
     private Integer deposit;
