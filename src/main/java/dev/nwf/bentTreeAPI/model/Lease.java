@@ -15,7 +15,7 @@ import jakarta.persistence.Table;
 @Table(name = "leases")
 public class Lease {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private Date start_date;
     private Date end_date;

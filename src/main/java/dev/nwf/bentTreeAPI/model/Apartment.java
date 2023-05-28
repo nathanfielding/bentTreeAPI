@@ -1,5 +1,6 @@
 package dev.nwf.bentTreeAPI.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.Entity;
@@ -13,7 +14,7 @@ import jakarta.persistence.Table;
 @Table(name = "apartments")
 public class Apartment {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String number;
     private Integer occupancy;
@@ -21,7 +22,7 @@ public class Apartment {
     private String property;
     
     @OneToMany(mappedBy = "apartment")
-    private List<Tenant> tenants;
+    private List<Tenant> tenants = new ArrayList<>();
 
     public Apartment() {
     }

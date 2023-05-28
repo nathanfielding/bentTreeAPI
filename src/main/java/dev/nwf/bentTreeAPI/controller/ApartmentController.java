@@ -25,7 +25,7 @@ public class ApartmentController {
         return this.apartmentRepository.findAll();
     }
 
-    @PostMapping(value = "", consumes = "application/json")
+    @PostMapping("")
     public void createApartment(@RequestBody Apartment apartment) {
         this.apartmentRepository.save(apartment);
     }

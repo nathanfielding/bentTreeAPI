@@ -11,6 +11,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import dev.nwf.bentTreeAPI.repository.ApartmentRepository;
 import dev.nwf.bentTreeAPI.repository.TenantRepository;
+import dev.nwf.bentTreeAPI.service.TenantService;
 import dev.nwf.bentTreeAPI.model.Apartment;
 import dev.nwf.bentTreeAPI.model.Tenant;
 
@@ -19,35 +20,29 @@ import java.util.List;
 @RestController
 @RequestMapping("api/tenants")
 public class TenantController {
-    private final TenantRepository tenantRepository;
-    private final ApartmentRepository apartmentRepository;
+    private final TenantService tenantService;
 
-    public TenantController(TenantRepository tenantRepository, ApartmentRepository apartmentRepository) {
-        this.tenantRepository = tenantRepository;
-        this.apartmentRepository = apartmentRepository;
+    public TenantController(TenantService tenantService) {
+        this.tenantService = tenantService;
     }
 
     @GetMapping("")
     public List<Tenant> findAll() {
-        return this.tenantRepository.findAll();
+        return this.tenantService.findAll();
     }
 
     @GetMapping("/name/{name}")
     public Tenant findByName(@PathVariable String name) {
-        return this.tenantRepository.findByName(name);
+        return this.tenantService.findByName(name);
     }
 
     @GetMapping("/apartment/{number}")
     public List<Tenant> findByApartmentNumber(@PathVariable String number) {
-        Apartment apartment = this.apartmentRepository.findByNumber(number);
-        if (apartment == null) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Apartment not found");
-        }
-        return apartment.getTenants();
+        return this.tenantService.findAllByApartmentNumber(number);
     }
 
     @PostMapping("")
     public void createTenant(@RequestBody Tenant tenant) {
-        this.tenantRepository.save(tenant);
+        this.tenantService.save(tenant);
     }
 }
