@@ -7,9 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import dev.nwf.bentTreeAPI.model.Apartment;
-import dev.nwf.bentTreeAPI.model.Tenant;
 import dev.nwf.bentTreeAPI.repository.ApartmentRepository;
-import dev.nwf.bentTreeAPI.repository.TenantRepository;
 
 @Service
 public class ApartmentService {
@@ -31,12 +29,11 @@ public class ApartmentService {
         this.apartmentRepository.save(apartment);
     }
 
-    public void addTenant(String number, String name) {
+    public void deleteByNumber(String number) {
         Apartment apartment = this.apartmentRepository.findByNumber(number);
         if (apartment == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Apartment not found");
         }
-        // apartment.addTenant(tenant);
-        this.apartmentRepository.save(apartment);
+        this.apartmentRepository.delete(apartment);
     }
 }

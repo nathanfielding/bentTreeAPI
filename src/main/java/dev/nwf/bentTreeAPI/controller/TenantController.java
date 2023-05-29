@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import dev.nwf.bentTreeAPI.service.TenantApartmentService;
 import dev.nwf.bentTreeAPI.service.TenantService;
 import dev.nwf.bentTreeAPI.model.Tenant;
 
@@ -16,9 +17,11 @@ import java.util.List;
 @RequestMapping("api/tenants")
 public class TenantController {
     private final TenantService tenantService;
+    private final TenantApartmentService tenantApartmentService;
 
-    public TenantController(TenantService tenantService) {
+    public TenantController(TenantService tenantService, TenantApartmentService tenantApartmentService) {
         this.tenantService = tenantService;
+        this.tenantApartmentService = tenantApartmentService;
     }
 
     @GetMapping("")
@@ -33,7 +36,7 @@ public class TenantController {
 
     @GetMapping("/apartment/{number}")
     public List<Tenant> findByApartmentNumber(@PathVariable String number) {
-        return this.tenantService.findAllByApartmentNumber(number);
+        return this.tenantApartmentService.findAllByApartmentNumber(number);
     }
 
     @PostMapping("")

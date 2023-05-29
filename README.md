@@ -14,9 +14,9 @@ docker compose up -d
 
 # Endpoints to Query (GET)
 * All apartments: http://localhost:8080/api/apartments
-    - by apartment number: /{number}
+    - by apartment number: number/{number}
 * All tenants: http://localhost:8080/api/tenants
-    - by tenant name: /{name}
+    - by tenant name: name/{name}
     - by tenant apartment number: /apartment/{number}
 
 # Endpoints to Create (POST)
