@@ -83,10 +83,10 @@ public class TenantApartmentLeaseService {
     }
 
     public List<Apartment> findApartmentsByEnd_date(String date) {
-        Date end_date = Date.valueOf(date);
+        Date endDate = Date.valueOf(date);
 
         // shorthand version using Java Streams
-        return this.leaseService.findAllByEnd_date(end_date).stream()
+        return this.leaseService.findAllByEndDate(endDate).stream()
                 .filter(lease -> lease.getApartment() != null)
                 .map(Lease::getApartment)
                 .collect(Collectors.toList());

@@ -9,5 +9,5 @@ import org.springframework.data.repository.ListCrudRepository;
 
 public interface LeaseRepository extends ListCrudRepository<Lease, Integer> {
 
-    public List<Lease> findAllByEnd_date(Date end_date);
+    public List<Lease> findAllByEndDate(Date endDate);
 }

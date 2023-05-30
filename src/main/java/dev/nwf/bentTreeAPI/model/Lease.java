@@ -17,8 +17,9 @@ public class Lease {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private Date start_date;
-    private Date end_date;
+
+    private Date startDate;
+    private Date endDate;
 
     @OneToOne
     @JoinColumn(name = "tenant_id", referencedColumnName = "id")
@@ -33,11 +34,11 @@ public class Lease {
     public Lease() {
     }
 
-    public Lease(Integer id, Date start_date, Date end_date, Tenant tenant, Apartment apartment, Integer monthly_rent,
+    public Lease(Integer id, Date startDate, Date endDate, Tenant tenant, Apartment apartment, Integer monthly_rent,
             Integer deposit) {
         this.id = id;
-        this.start_date = start_date;
-        this.end_date = end_date;
+        this.startDate = startDate;
+        this.endDate = endDate;
         this.tenant = tenant;
         this.apartment = apartment;
         this.monthly_rent = monthly_rent;
@@ -48,12 +49,12 @@ public class Lease {
         return this.id;
     }
 
-    public Date getStart_date() {
-        return this.start_date;
+    public Date getstartDate() {
+        return this.startDate;
     }
 
-    public Date getEnd_date() {
-        return this.end_date;
+    public Date getEndDate() {
+        return this.endDate;
     }
 
     public Tenant getTenant() {
@@ -76,12 +77,12 @@ public class Lease {
         this.id = id;
     }
 
-    public void setStart_date(Date start_date) {
-        this.start_date = start_date;
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
     }
 
-    public void setEnd_date(Date end_date) {
-        this.end_date = end_date;
+    public void setendDate(Date endDate) {
+        this.endDate = endDate;
     }
 
     public void setTenant(Tenant tenant) {

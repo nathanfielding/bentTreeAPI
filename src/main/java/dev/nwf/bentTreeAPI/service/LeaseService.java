@@ -20,8 +20,8 @@ public class LeaseService {
         return this.leaseRepository.findAll();
     }
 
-    public List<Lease> findAllByEnd_date(Date end_date) {
-        return this.leaseRepository.findAllByEnd_date(end_date);
+    public List<Lease> findAllByEndDate(Date endDate) {
+        return this.leaseRepository.findAllByEndDate(endDate);
     }
 
     public void save(Lease lease) {
