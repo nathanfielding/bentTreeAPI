@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import dev.nwf.bentTreeAPI.service.ApartmentService;
-import dev.nwf.bentTreeAPI.service.TenantApartmentService;
+import dev.nwf.bentTreeAPI.service.TenantApartmentLeaseService;
 import dev.nwf.bentTreeAPI.model.Apartment;
 import dev.nwf.bentTreeAPI.model.Tenant;
 
@@ -20,9 +20,9 @@ import dev.nwf.bentTreeAPI.model.Tenant;
 @RequestMapping("api/apartments")
 public class ApartmentController {
     private final ApartmentService apartmentService;
-    private final TenantApartmentService tenantApartmentService;
+    private final TenantApartmentLeaseService tenantApartmentService;
 
-    public ApartmentController(ApartmentService apartmentService, TenantApartmentService tenantApartmentService) {
+    public ApartmentController(ApartmentService apartmentService, TenantApartmentLeaseService tenantApartmentService) {
         this.apartmentService = apartmentService;
         this.tenantApartmentService = tenantApartmentService;
     }
@@ -37,6 +37,11 @@ public class ApartmentController {
         return this.apartmentService.findByNumber(number);
     }
 
+    @GetMapping("/end_date/{end_date}")
+    public List<Apartment> findApartmentsByEnd_date(@PathVariable String end_date) {
+        return this.tenantApartmentService.findApartmentsByEnd_date(end_date);
+    }
+
     @PostMapping("")
     public void createApartment(@RequestBody Apartment apartment) {
         this.apartmentService.save(apartment);
@@ -47,6 +52,7 @@ public class ApartmentController {
         this.tenantApartmentService.addTenantToApartment(number, name);
     }
 
+    // this method is stil throwing a 500 error
     @PutMapping("/number/{number}")
     public void addTenantToApartment(@PathVariable String number, @RequestBody Tenant tenant) {
         this.tenantApartmentService.addTenantToApartment(number, tenant);

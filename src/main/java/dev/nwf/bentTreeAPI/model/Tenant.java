@@ -32,7 +32,7 @@ public class Tenant {
     }
 
     public Tenant(Integer id, String name, String email, String phone_number, Boolean is_renewing,
-            String home_address, Apartment apartment) {
+            String home_address, Apartment apartment, Lease lease) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -70,6 +70,10 @@ public class Tenant {
         return this.apartment;
     }
 
+    public Lease getLease() {
+        return this.lease;
+    }
+
     public void setId(Integer id) {
         this.id = id;
     }
@@ -96,5 +100,9 @@ public class Tenant {
 
     public void setApartment(Apartment apartment) {
         this.apartment = apartment;
+    }
+
+    public void setLease(Lease lease) {
+        this.lease = lease;
     }
 }

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import dev.nwf.bentTreeAPI.service.TenantApartmentService;
+import dev.nwf.bentTreeAPI.service.TenantApartmentLeaseService;
 import dev.nwf.bentTreeAPI.service.TenantService;
 import dev.nwf.bentTreeAPI.model.Tenant;
 
@@ -17,9 +17,9 @@ import java.util.List;
 @RequestMapping("api/tenants")
 public class TenantController {
     private final TenantService tenantService;
-    private final TenantApartmentService tenantApartmentService;
+    private final TenantApartmentLeaseService tenantApartmentService;
 
-    public TenantController(TenantService tenantService, TenantApartmentService tenantApartmentService) {
+    public TenantController(TenantService tenantService, TenantApartmentLeaseService tenantApartmentService) {
         this.tenantService = tenantService;
         this.tenantApartmentService = tenantApartmentService;
     }
