@@ -33,6 +33,28 @@ public class TenantApartmentLeaseService {
         return apartment.getTenants();
     }
 
+    public Lease findLeaseByTenantName(String name) {
+        Tenant tenant = this.tenantService.findByName(name);
+        if (tenant == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Tenant not found");
+        }
+        if (tenant.getLease() == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Tenant has no associated lease");
+        }
+        return tenant.getLease();
+    }
+
+    public List<Apartment> findApartmentsByEndDate(String date) {
+        Date endDate = Date.valueOf(date);
+
+        // shorthand version using Java Streams
+        return this.leaseService.findAllByEndDate(endDate).stream()
+                .filter(lease -> lease.getApartment() != null)
+                .map(Lease::getApartment)
+                .collect(Collectors.toList());
+
+    }
+
     public void addTenantToApartment(String number, String name) {
         Apartment apartment = this.apartmentService.findByNumber(number);
         if (apartment == null) {
@@ -69,27 +91,5 @@ public class TenantApartmentLeaseService {
 
         this.apartmentService.save(apartment);
         this.tenantService.save(tenant);
-    }
-
-    public Lease findLeaseByTenantName(String name) {
-        Tenant tenant = this.tenantService.findByName(name);
-        if (tenant == null) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Tenant not found");
-        }
-        if (tenant.getLease() == null) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Tenant has no associated lease");
-        }
-        return tenant.getLease();
-    }
-
-    public List<Apartment> findApartmentsByEnd_date(String date) {
-        Date endDate = Date.valueOf(date);
-
-        // shorthand version using Java Streams
-        return this.leaseService.findAllByEndDate(endDate).stream()
-                .filter(lease -> lease.getApartment() != null)
-                .map(Lease::getApartment)
-                .collect(Collectors.toList());
-
     }
 }
