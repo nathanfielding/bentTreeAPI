@@ -11,6 +11,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "apartments")
@@ -18,9 +20,13 @@ public class Apartment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @NotBlank
     private String number;
+    @Size(min = 1, max = 4)
     private Integer occupancy;
+    @Size(min = 1, max = 4)
     private Integer bedrooms;
+    @NotBlank
     private String property;
     
     @JsonIgnore

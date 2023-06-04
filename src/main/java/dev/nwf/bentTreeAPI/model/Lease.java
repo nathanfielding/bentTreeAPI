@@ -10,6 +10,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Future;
+import jakarta.validation.constraints.PastOrPresent;
 
 @Entity
 @Table(name = "leases")
@@ -18,7 +20,9 @@ public class Lease {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @PastOrPresent
     private Date startDate;
+    @Future
     private Date endDate;
 
     @OneToOne
